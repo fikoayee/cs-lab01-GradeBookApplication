@@ -35,7 +35,7 @@ namespace GradeBookTests
             //Test if exception is thrown when there are less than 5 students.
             var exception = Record.Exception(() => method.Invoke(gradeBook, new object[] { 100 }));
             Assert.True(exception != null, "`GradeBook.GradeBooks.RankedGradeBook.GetLetterGrade` didn't throw an exception when less than 5 students have grades.");
-
+            
             //Setup successful conditions
             var students = new List<Student>
             {
@@ -63,7 +63,7 @@ namespace GradeBookTests
 
             gradeBook.GetType().GetProperty("Students").SetValue(gradeBook, students);
 
-            //Test if A is given when input grade is in the top 20%.
+            //Test if F is given when input grade is below top 80%
             Assert.True((char)method.Invoke(gradeBook, new object[] { 0 }) == 'F', "`GradeBook.GradeBooks.RankedGradeBook.GetLetterGrade` didn't give an F when a student failed to earn a higher grade.");
 
             // Read file for to confirm GetLetterGrade has been overriden
