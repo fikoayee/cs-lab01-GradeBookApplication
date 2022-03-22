@@ -18,10 +18,10 @@ namespace GradeBook.GradeBooks
             {
                 listOfGrades.Add(student.AverageGrade);
             }
-            int n = (Students.Count)/5;  // 20% of students
+            int n = (Students.Count) / 5;  // 20% of students
 
             // 2. then loop through all the grades and check how many scored higher than the input average,
-            int a = 0; 
+            int a = 0;
             foreach (var grade in listOfGrades)
             {
                 if (grade > averageGrade)
@@ -35,16 +35,23 @@ namespace GradeBook.GradeBooks
             {
                 throw new InvalidOperationException();
             }
-            else if (a/n <1)
+            else if (a / n < 1)
                 return 'A';
-            else if (a/n <2 && a/n >=1)
+            else if (a / n < 2 && a / n >= 1)
                 return 'B';
             else if (a / n < 3 && a / n >= 2)
                 return 'C';
             else if (a / n < 4 && a / n >= 3)
                 return 'D';
-            else 
+            else
                 return 'F';
+        }
+        public override void CalculateStudentStatistics(string name)
+        {
+            if(Students.Count < 5)
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+            else
+                base.CalculateStudentStatistics(name);
         }
     }
 }
